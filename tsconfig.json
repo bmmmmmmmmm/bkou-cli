@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "noEmit": false,
+    "composite": true,
+    "allowJs": true,
+    "rootDir": "./src/",
+    "outDir": "./dist/",
+  },
+  "include": ["./src"]
+}
