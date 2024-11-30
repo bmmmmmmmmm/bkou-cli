@@ -15,7 +15,11 @@ export const commands = {
   '@@GETRBPATH@@': getRbPathENV,
 
   'rb': addRB,
-  'rbl': listRB,
+  'rbl': () => listRB(),
+  'rbll': () => {
+    const date = new Date(new Date().getTime() - 1000 * 60 * 60 * 24);
+    listRB(date)
+  },
   'le': countWords
 } as const
 type Commands = keyof typeof commands

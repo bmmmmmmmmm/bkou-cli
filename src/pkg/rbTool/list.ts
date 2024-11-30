@@ -24,7 +24,7 @@ const _listRB = (filePath) => {
       throw new Error(`>> Failed to list <<\n${err}\nEND__: >> Failed to list <<`);
     }
   } else {
-    throw new Error('>> Failed to list <<\nNo file for today\nEND__: >> Failed to list <<')
+    throw new Error(`>> Failed to list <<\nNo file for ${filePath}\nEND__: >> Failed to list <<`)
   }
 };
 
