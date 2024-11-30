@@ -1,7 +1,7 @@
 import { _log } from '../../utils';
 import { _getRbPathENV, _getRbPath, _setRbPathENV } from "./path";
 import { _addRB } from "./add";
-import { _listRB } from "./list";
+import { _listRB, _listPrevRB } from "./list";
 
 const addRB = (content) => {
   try {
@@ -12,15 +12,25 @@ const addRB = (content) => {
     _log(err, 'red')
   }
 }
-const listRB = (initDate?) => {
+const listRB = () => {
   try {
-    const filePath = _getRbPath(initDate)
+    const filePath = _getRbPath()
     const { result, lineCount, wordCount } = _listRB(filePath)
     _log([...result.map(([time, row]) => `${time} => ${row}`), '================', `Total lines: ${lineCount}`, `Total words: ${wordCount}`])
   } catch (err) {
     _log(err, 'red')
   }
 }
+const listPrevRB = () => {
+  try {
+    const filePath = _getRbPath()
+    const { result, lineCount, wordCount } = _listPrevRB(filePath)
+    _log([...result.map(([time, row]) => `${time} => ${row}`), '================', `Total lines: ${lineCount}`, `Total words: ${wordCount}`])
+  } catch (err) {
+    _log(err, 'red')
+  }
+}
+
 const setRbPathENV = (path) => {
   try {
     _setRbPathENV(path)

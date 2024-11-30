@@ -13,10 +13,22 @@ const _getRbPathENV = () => {
   }
 }
 
-const _getRbPath = (initDate?) => {
+const _getRbPath = () => {
   try {
     const rbPathENV = _getRbPathENV();
-    const date = initDate || new Date();
+    const date = new Date();
+    const PDate = `${date.getFullYear()}${String(date.getMonth()+1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}`;
+    const rbPathTD = join(rbPathENV, `${PDate}.md`);
+    return rbPathTD;
+  } catch (err) {
+    throw new Error(`>> Failed to get rbPath TD <<\n${err}\nEND__: >> Failed to get rbPath TD <<`);
+  }
+};
+
+const _getPrevRbPath = () => {
+  try {
+    const rbPathENV = _getRbPathENV();
+    const date = new Date();
     const PDate = `${date.getFullYear()}${String(date.getMonth()+1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}`;
     const rbPathTD = join(rbPathENV, `${PDate}.md`);
     return rbPathTD;
@@ -35,4 +47,4 @@ const _setRbPathENV = (newPath: string) => {
   }
 };
 
-export { _getRbPathENV, _getRbPath, _setRbPathENV }
+export { _getRbPathENV, _getRbPath, _getPrevRbPath, _setRbPathENV }
