@@ -26,6 +26,7 @@ type Commands = keyof typeof commands
 const commandsDesc: Partial<Record<Commands, string>> = {
   rb: '',
   rbl: '',
+  rbll: '',
   le: ''
 }
 
