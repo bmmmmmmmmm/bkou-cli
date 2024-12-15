@@ -20,7 +20,6 @@
     "// popular sub-commands ==============================": "",
     "rb": "./dist/bin/rbTool/rb.js",
     "rbl": "./dist/bin/rbTool/rbl.js",
-    "rbll": "./dist/bin/rbTool/rbll.js",
     "le": "./dist/bin/countWords/le.js"
   },
   "devDependencies": {

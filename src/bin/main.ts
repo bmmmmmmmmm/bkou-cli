@@ -2,8 +2,8 @@
 
 import { _log } from '../utils'
 import {
-  setRbPathENV,
-  getRbPathENV,
+  setRBPathENV,
+  getRBPathENV,
   addRB,
   listRB,
 
@@ -11,22 +11,17 @@ import {
 } from '../pkg/index.cli'
 
 export const commands = {
-  '@@SETRBPATH@@': setRbPathENV,
-  '@@GETRBPATH@@': getRbPathENV,
+  '@@SETRBPATH@@': setRBPathENV,
+  '@@GETRBPATH@@': getRBPathENV,
 
   'rb': addRB,
   'rbl': () => listRB(),
-  'rbll': () => {
-    const date = new Date(new Date().getTime() - 1000 * 60 * 60 * 24);
-    listRB(date)
-  },
   'le': countWords
 } as const
 type Commands = keyof typeof commands
 const commandsDesc: Partial<Record<Commands, string>> = {
   rb: '',
   rbl: '',
-  rbll: '',
   le: ''
 }
 

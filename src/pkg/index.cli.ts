@@ -1,9 +1,9 @@
-import { setRbPathENV, getRbPathENV, addRB, listRB } from "./rbTool"
+import { setRBPathENV, getRBPathENV, addRB, listRB } from "./rbTool"
 import { countWords } from "./countWords"
 
 export {
-  setRbPathENV,
-  getRbPathENV,
+  setRBPathENV,
+  getRBPathENV,
   addRB,
   listRB,
 

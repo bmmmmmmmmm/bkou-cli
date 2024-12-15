@@ -1,10 +1,10 @@
-import { readFileSync, mkdirSync, writeFileSync } from 'node:fs'
+import { readFileSync, mkdirSync, writeFileSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { _isAbsolutePath } from '../../utils';
 
 const ENV_PATH = join(__dirname, 'ENV');
 
-const _getRbPathENV = () => {
+const _getRBPathENV = () => {
   try {
     const rbPathENV = readFileSync(join(ENV_PATH, 'path'), 'utf8').trim();
     return rbPathENV
@@ -13,19 +13,43 @@ const _getRbPathENV = () => {
   }
 }
 
-const _getRbPath = (initDate?) => {
+const _getRBPath = (init?: string) => {
   try {
-    const rbPathENV = _getRbPathENV();
-    const date = initDate || new Date();
-    const PDate = `${date.getFullYear()}${String(date.getMonth()+1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}`;
-    const rbPathTD = join(rbPathENV, `${PDate}.md`);
+    const rbPathENV = _getRBPathENV();
+    if (init.length === 8) return join(rbPathENV, `${init}.md`);
+    let offsetRB = Math.floor(Math.abs(Number(init))) || 0;
+    let loop = 100;
+    let curDate = new Date();
+    let resPDate = '';
+    do {
+      loop--;
+      curDate = new Date(curDate.getTime() - 1000 * 60 * 60 * 24);
+      const PDate = `${curDate.getFullYear()}${String(curDate.getMonth()+1).padStart(2, '0')}${String(curDate.getDate()).padStart(2, '0')}`;
+      if (_checkRBDateSilent(PDate, rbPathENV)) {
+        offsetRB--;
+        resPDate = PDate;
+      }
+    } while (offsetRB > 0 && loop > 0);
+    if (loop === 0) throw new Error(`>> ERR path <<\nOver loop finding ${init} RB\nEND__: >> ERR path <<`);
+    if (resPDate === '') throw new Error(`>> ERR path <<\nNo RB found\nEND__: >> ERR path <<`);
+    const rbPathTD = join(rbPathENV, `${resPDate}.md`);
     return rbPathTD;
   } catch (err) {
-    throw new Error(`>> Failed to get rbPath TD <<\n${err}\nEND__: >> Failed to get rbPath TD <<`);
+    throw new Error(`>> Failed to get rbPath <<\n${err}\nEND__: >> Failed to get rbPath <<`);
   }
 };
 
-const _setRbPathENV = (newPath: string) => {
+const _checkRBDateSilent = (rbDate: string, rbPathENV: string = _getRBPathENV()) => _checkRBPathSilent(join(rbPathENV, `${rbDate}.md`))
+
+const _checkRBPathSilent = (rbPath: string) => rbPath.trim() && existsSync(rbPath)
+
+const _checkRBPath = (rbPath: string) => {
+  if (!rbPath.trim()) throw new Error('>> ERR path <<\nPath not set\nEND__: >> ERR path <<');
+  if (!existsSync(rbPath)) throw new Error(`>> ERR path <<\nNo file for ${rbPath}\nEND__: >> ERR path <<`);
+  // return true;
+}
+
+const _setRBPathENV = (newPath: string) => {
   try {
     if (!_isAbsolutePath(newPath)) throw new Error(`'${newPath}' is not absolute path`);
     mkdirSync(dirname(join(ENV_PATH, 'path')), { recursive: true });
@@ -35,4 +59,4 @@ const _setRbPathENV = (newPath: string) => {
   }
 };
 
-export { _getRbPathENV, _getRbPath, _setRbPathENV }
+export { _getRBPathENV, _getRBPath, _setRBPathENV, _checkRBPath }
