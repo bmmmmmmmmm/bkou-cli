@@ -5,10 +5,11 @@
   "author": "BKou",
   "license": "ISC",
   "scripts": {
-    "build": "tsc",
-    "clear:dist": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
+    "dev": "node build.js dev",
+    "build": "node build.js",
+    "clear:dist": "rm -rf dist",
     "rebuild": "npm run clear:dist && npm run build",
-    "dev": "npm run rebuild && chmod +x dist/bin/* && npm uninstall @bkou/cli -g && npm link",
+    "// dev": "npm run rebuild && chmod +x dist/bin/* && npm uninstall @bkou/cli -g && npm link",
     "version:patch": "npm version patch --no-git-tag-version",
     "release": "npm run rebuild && npm run version:patch && npm publish"
   },
@@ -16,14 +17,15 @@
     "dist/**/*.js"
   ],
   "bin": {
-    "bk": "./dist/bin/main.js",
+    "bk": "dist/main.js",
     "// popular sub-commands ==============================": "",
-    "rb": "./dist/bin/rbTool/rb.js",
-    "rbl": "./dist/bin/rbTool/rbl.js",
-    "le": "./dist/bin/countWords/le.js"
+    "rb": "dist/rbTool/rb.js",
+    "rbl": "dist/rbTool/rbl.js",
+    "le": "dist/countWords/le.js"
   },
   "devDependencies": {
     "@types/node": "^20.12.11",
+    "esbuild": "^0.25.4",
     "typescript": "^5.4.5"
   }
 }
