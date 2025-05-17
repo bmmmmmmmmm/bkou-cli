@@ -40,3 +40,12 @@ new Date(new Date("2024-07-01T00:00:00+0800").getTime() + (365 / 5) * 1000 * 60 
 // 第
 Math.floor((new Date().getTime() - new Date("2024-08-11T22:40:00+0800").getTime()) / 1000 / 60 / 60 / 24) + 1
 ```
+
+##### 20250517
+
+- [ ] 多个 bin 是否需要多个入口？打包结果是否需要多个？
+
+- [ ] 一键同步note
+
+- [ ] version-bump && tag-push
+- [ ] 单元测试
