@@ -49,3 +49,8 @@ Math.floor((new Date().getTime() - new Date("2024-08-11T22:40:00+0800").getTime(
 
 - [ ] version-bump && tag-push
 - [ ] 单元测试
+
+##### 20250612
+
+- [ ] 一键删除 `.DS_Store`
+
