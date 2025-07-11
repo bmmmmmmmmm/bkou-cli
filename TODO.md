@@ -54,3 +54,8 @@ Math.floor((new Date().getTime() - new Date("2024-08-11T22:40:00+0800").getTime(
 
 - [ ] 一键删除 `.DS_Store`
 
+##### 20250711
+
+- [ ] 迁移 obsidian 日报/周报逻辑
+- [ ] url parse
+- [ ] image <==> base64
