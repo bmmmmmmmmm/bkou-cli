@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 
-import { addRB } from "../../pkg/rbTool";
+import { spawn } from 'child_process';
+import { join } from 'path';
 
-addRB(process.argv.slice(2).join(' '))
+const mainPath = join(__dirname, '../main.js');
+const args = ['rb', ...process.argv.slice(2)];
+const child = spawn(process.execPath, [mainPath, ...args], {
+  stdio: 'inherit',
+  env: process.env
+});
+child.on('close', (code) => {
+  process.exit(code || 0);
+});

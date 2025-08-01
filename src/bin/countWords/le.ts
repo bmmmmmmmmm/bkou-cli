@@ -1,29 +1,14 @@
 #!/usr/bin/env node
 
-import { countWords } from "../../pkg/countWords"
+import { spawn } from 'child_process';
+import { join } from 'path';
 
-const cw = () => {
-  if (process.argv.slice(2).join(' ')) {
-    countWords(process.argv.slice(2).join(' '))
-    return
-  }
-  const readline = require('readline');
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  console.log('输入多行文本，以 "__LEE__" 结束：');
-  let inputLines = [];
-  rl.on('line', (line) => {
-    if (line.trim() === '__LEE__') {
-      rl.close();
-    } else {
-      inputLines.push(line);
-    }
-  });
-  rl.on('close', () => {
-    countWords(inputLines.join(' '))
-  });
-}
-
-cw()
+const mainPath = join(__dirname, '../main.js');
+const args = ['le', ...process.argv.slice(2)];
+const child = spawn(process.execPath, [mainPath, ...args], {
+  stdio: 'inherit',
+  env: process.env
+});
+child.on('close', (code) => {
+  process.exit(code || 0);
+});

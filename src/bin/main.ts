@@ -25,7 +25,6 @@ const commandsDesc: Partial<Record<Commands, string>> = {
   le: ''
 }
 
-
 const main = async () => {
   const whichCommand = process.argv[2] as Commands
   const USER_INPUT = process.argv.slice(3).join(' ') || '';
@@ -34,7 +33,7 @@ const main = async () => {
       return _log(['commandList:', JSON.stringify(commandsDesc, null, 2)], 'cyan')
     }
     if (!commands[whichCommand]) {
-      throw new Error('wrong command')
+      throw new Error(`Unknown command: ${whichCommand}`)
     }
     await commands[whichCommand](USER_INPUT)
   } catch (err) {
