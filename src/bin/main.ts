@@ -15,7 +15,7 @@ export const commands = {
   '@@GETRBPATH@@': getRBPathENV,
 
   'rb': addRB,
-  'rbl': () => listRB(),
+  'rbl': listRB,
   'le': countWords
 } as const
 type Commands = keyof typeof commands

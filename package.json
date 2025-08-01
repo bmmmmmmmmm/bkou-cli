@@ -5,11 +5,11 @@
   "author": "BKou",
   "license": "ISC",
   "scripts": {
-    "dev": "node build.js dev",
+    "// dev": "node build.js dev",
     "build": "node build.js",
     "clear:dist": "rm -rf dist",
     "rebuild": "npm run clear:dist && npm run build",
-    "// dev": "npm run rebuild && chmod +x dist/bin/* && npm uninstall @bkou/cli -g && npm link",
+    "dev": "npm run rebuild && chmod +x dist/* && npm uninstall @bkou/cli -g && npm link",
     "version:patch": "npm version patch --no-git-tag-version",
     "release": "npm run rebuild && npm run version:patch && npm publish"
   },

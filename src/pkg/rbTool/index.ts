@@ -17,7 +17,7 @@ const listRB = (initRBPath?: string) => {
     const filePath = _getRBPath(initRBPath)
     _checkRBPath(filePath)
     const { result, lineCount, wordCount } = _listRB(filePath)
-    _log([...result.map(([time, row]) => `${time} => ${row}`), '================', `Total lines: ${lineCount}`, `Total words: ${wordCount}`])
+    _log([filePath, '================', ...result.map(([time, row]) => `${time} => ${row}`), '================', `Total lines: ${lineCount}`, `Total words: ${wordCount}`])
   } catch (err) {
     _log(err, 'red')
   }
