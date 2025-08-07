@@ -59,3 +59,7 @@ Math.floor((new Date().getTime() - new Date("2024-08-11T22:40:00+0800").getTime(
 - [ ] 迁移 obsidian 日报/周报逻辑
 - [ ] url parse
 - [ ] image <==> base64
+
+##### 20250805
+
+- [ ] 刷新 git 对大小写的缓存
