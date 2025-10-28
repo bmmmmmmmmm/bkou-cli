@@ -1,10 +1,10 @@
-> __T: npm发包推荐JS或TS发布方式
-> LLM: DeepSeek-V3
+> __T: npm发包推荐JS或TS发布方式  
+> LLM: DeepSeek-V3  
 > URL: https://chat.deepseek.com/a/chat/s/310714d6-dcd3-4f97-967a-f888ca9628e4
 
 ---
 
-> __Q: 你觉得我的目录结构怎么样?
+> __Q: 你觉得我的目录结构怎么样?  
 > LLM: Claude-3.7-Sonnet
 
 A:
@@ -55,9 +55,9 @@ A:
 
 ------
 
-> __Q:
->     1. 你更推荐使用JSDoc还是typescript？
->     2. 我在打包之后就没有bin目录了，在开发的时候还有必要维护bin吗
+> __Q:  
+>   1. 你更推荐使用JSDoc还是typescript？
+>   2. 我在打包之后就没有bin目录了，在开发的时候还有必要维护bin吗  
 > LLM: Claude-3.7-Sonnet
 
 A:
