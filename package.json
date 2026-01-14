@@ -26,5 +26,8 @@
   "devDependencies": {
     "@types/node": "^20.12.11",
     "esbuild": "^0.25.4"
+  },
+  "dependencies": {
+    "@bkou/core": "0.0.3"
   }
 }
